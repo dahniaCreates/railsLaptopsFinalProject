@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  screen: MyString
+  screen_size: MyString
+  cpu: MyString
+  gpu: MyString
+  ram: MyString
+  storage: MyString
+  operating_system: MyString
+  operating_system_version: MyString
+  price: 9.99
+  category: one
+
+two:
+  name: MyString
+  screen: MyString
+  screen_size: MyString
+  cpu: MyString
+  gpu: MyString
+  ram: MyString
+  storage: MyString
+  operating_system: MyString
+  operating_system_version: MyString
+  price: 9.99
+  category: two
