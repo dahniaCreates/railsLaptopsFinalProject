@@ -88,16 +88,10 @@ GEM
     arbre (1.5.0)
       activesupport (>= 3.0.0, < 7.1)
       ruby2_keywords (>= 0.0.2, < 1.0)
-    autoprefixer-rails (10.4.7.0)
-      execjs (~> 2)
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.14.0)
       msgpack (~> 1.2)
-    bootstrap (5.2.2)
-      autoprefixer-rails (>= 9.1.0)
-      popper_js (>= 2.11.6, < 3)
-      sassc-rails (>= 2.0.0)
     builder (3.2.4)
     capybara (3.38.0)
       addressable
@@ -121,7 +115,6 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.11.0)
-    execjs (2.8.1)
     ffi (1.15.5)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
@@ -192,7 +185,6 @@ GEM
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    popper_js (2.11.6)
     public_suffix (5.0.0)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -300,7 +292,6 @@ PLATFORMS
 DEPENDENCIES
   activeadmin (~> 2.13, >= 2.13.1)
   bootsnap
-  bootstrap (~> 5.2, >= 5.2.2)
   capybara
   debug
   devise
@@ -308,6 +299,7 @@ DEPENDENCIES
   image_processing
   importmap-rails
   jbuilder
+  kaminari (~> 1.2, >= 1.2.2)
   puma (~> 5.0)
   rails (~> 7.0.4)
   sassc-rails

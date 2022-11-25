@@ -66,7 +66,7 @@ group :development do
   gem 'activeadmin', '~> 2.13', '>= 2.13.1'
   gem 'devise'
   gem 'image_processing'
-  gem 'bootstrap', '~> 5.2', '>= 5.2.2'
+  gem 'kaminari', '~> 1.2', '>= 1.2.2'
 end
 
 group :test do
