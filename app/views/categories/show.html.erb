@@ -1,5 +1,9 @@
 <aside>
   <h1><%=@category_name.name%> Laptops</h1>
+
+  <div class="d-flex flex-row-reverse">
+    <%= paginate @laptops_in_category%>
+  </div>
   <div class="row">
   <% @laptops_in_category.each do |laptop_in_category|%>
     <% if laptop_in_category.image.present? %>

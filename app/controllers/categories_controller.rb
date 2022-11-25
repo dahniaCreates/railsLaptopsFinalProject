@@ -5,6 +5,6 @@ class CategoriesController < ApplicationController
 
   def show
     @category_name = Category.find(params[:id])
-    @laptops_in_category = Product.where(category_id: params[:id])
+    @laptops_in_category = Product.where(category_id: params[:id]).page(params[:page])
   end
 end
