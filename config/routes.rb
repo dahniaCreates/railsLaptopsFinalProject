@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'home/index'
-  get 'contact_pages/show'
-  get 'about_pages/show'
+  get '/contactus' => 'contact_pages#show', as: '/contactus'
+  get '/aboutus' => 'about_pages#show', as: '/aboutus'
   get 'categories/index'
   get 'categories/show'
+  root to: 'home#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -11,6 +11,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :categories, only: [:index, :show]
-  resources :about_pages, only: [:show]
-  resources :contact_pages, only: [:show]
 end
