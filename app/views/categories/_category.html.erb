@@ -1,0 +1,8 @@
+<aside>
+  <h5><%= link_to category.name, category %></h5>
+  <% if category.image.present? %>
+    <%=link_to category do %>
+      <%= image_tag category.image.variant(resize_to_limit: [285, 285]).processed %>
+    <%end%>
+  <%end%>
+</aside>
