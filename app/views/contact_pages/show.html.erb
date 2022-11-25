@@ -1,0 +1,11 @@
+<% @contact_pages.each do |contact_page|%>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4"><%= contact_page.header%></h1>
+    <p class="lead"><%= contact_page.content%></p>
+    <p class="lead"><%= contact_page.address%></p>
+    <p class="lead"><%= contact_page.email%></p>
+    <p class="lead"><%= contact_page.phone_number%></p>
+  </div>
+</div>
+<%end%>

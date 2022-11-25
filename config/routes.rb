@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'contact_pages/show'
   get 'about_pages/show'
   get 'categories/index'
   get 'categories/show'
@@ -10,4 +11,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :categories, only: [:index, :show]
   resources :about_pages, only: [:show]
+  resources :contact_pages, only: [:show]
 end
