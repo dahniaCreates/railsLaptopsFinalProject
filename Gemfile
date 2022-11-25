@@ -62,8 +62,11 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
   gem 'activeadmin', '~> 2.13', '>= 2.13.1'
   gem 'devise'
+  gem 'image_processing'
+  gem 'bootstrap', '~> 5.2', '>= 5.2.2'
 end
 
 group :test do
