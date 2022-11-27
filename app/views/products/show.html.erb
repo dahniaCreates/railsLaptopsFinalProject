@@ -1,0 +1,30 @@
+    <% if @product.image.present? %>
+  <div class="col-sm-3">
+  <div class="card" style="width: 18rem;">
+      <h4 class="card-title"><%=@product.category.name%> - <%=@product.name%></h4>
+      <div class="card-img-top" alt=<% @product.name%>>
+        <%= image_tag @product.image.variant(resize_to_limit: [285, 285]).processed %>
+      </div>
+    <%end%>
+    <div class="card-body">
+      <p class="card-text">
+        <%=@product.screen%> Screen,
+        <%=@product.screen_size%> Screen Size,
+        <%=@product.cpu%> CPU,
+      </p>
+      <p class="card-text">
+        <%=@product.gpu%> GPU,
+        <%=@product.ram%> RAM,
+      </p>
+      <p class="card-text">
+        <%=@product.operating_system%>
+        <%=@product.operating_system_version %>
+      </p>
+      <p class="card-text">
+        <%=@product.storage%>
+        $ <%=@product.price %>
+      </p>
+      <%= link_to "Buy now", @product, class: "btn btn-dark"%>
+    </div>
+  </div>
+  </div>
