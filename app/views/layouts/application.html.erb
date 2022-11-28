@@ -35,6 +35,13 @@
       <%= link_to "Contact Us", contactus_path, class: "nav-link"%>
       </li>
     </ul>
+    <%= form_with(url: search_products_path, method: :get, local: true) do |form| %>
+          <div class="form-inline my-2 my-lg-0">
+           <%=form.collection_select :category_id, Category.order(:name), :id , :name, include_blank: true %>
+            <%= text_field_tag(:keywords, nil, class: "form-control mr-sm-2", placeholder: 'Search a laptop name')%>
+            <%=submit_tag("Search", class: "btn btn-dark my-2 my-sm-0")%>
+        </div>
+    <%end%>
   </div>
   </div>
 </nav>
