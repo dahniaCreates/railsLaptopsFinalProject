@@ -18,5 +18,7 @@ class ProductsController < ApplicationController
     else
       @products = Product.where("name LIKE ?", wildcard_search).page(params[:page])
     end
+
+    @category = Category.where(id: params[:category_id])
   end
 end

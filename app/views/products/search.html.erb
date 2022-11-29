@@ -1,7 +1,21 @@
 <h1 class="mt-5">Search results</h1>
-<h4 class="mt-1">
-  Your search for <%=params[:keywords]%> found <%= pluralize(@products.total_count, 'laptop')%>
-</h4>
+  <% if params[:category_id].present? && params[:keywords].present?%>
+  <% @category.each do |ctgry|%>
+    <h4 class="mt-1">
+    Your search for <%=params[:keywords]%> in <%= ctgry.name%> category found <%= pluralize(@products.total_count, 'laptop')%>
+    </h4>
+  <%end%>
+  <% elsif params[:category_id].present?%>
+  <% @category.each do |ctgry|%>
+  <h4 class="mt-1">
+    Your search for <%= ctgry.name %> category found <%= pluralize(@products.total_count, 'laptop')%>
+    </h4>
+  <%end%>
+  <% else %>
+  <h4 class="mt-1">
+    Your search for <%=params[:keywords]%> found <%= pluralize(@products.total_count, 'laptop')%>
+    </h4>
+  <%end%>
 
 <div class="d-flex flex-row-reverse">
   <%= paginate @products%>
