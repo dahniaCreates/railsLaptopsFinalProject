@@ -20,10 +20,25 @@
         <%=@product.operating_system%>
         <%=@product.operating_system_version %>
       </p>
-      <p class="card-text">
-        <%=@product.storage%>
-        $ <%=@product.price %>
+      <% if product.discount_price.nil?%>
+        <p class="card-text">
+          <%=product.storage%>
+          $ <%=product.price %>
+        </p>
+      <%else%>
+       <p class="card-text">
+        <%=product.storage%>
       </p>
+      <p class="card-text, text-muted"><s>
+        $<%=product.price %>
+        </s>
+      </p>
+      <p class="card-text, text-danger">
+      <strong>
+        Sale: $<%=product.discount_price%>
+        </strong>
+      </p>
+      <%end%>
       <%= link_to "Buy now", @product, class: "btn btn-dark"%>
     </div>
   </div>

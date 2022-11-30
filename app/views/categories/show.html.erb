@@ -9,7 +9,7 @@
     <% if laptop_in_category.image.present? %>
   <div class="col-sm-3">
   <div class="card" style="width: 18rem;">
-      <h4 class="card-title"><%=laptop_in_category.name%></h4>
+      <h4 class="card-title"><%=laptop_in_category.category.name%> - <%=laptop_in_category.name%></h4>
       <div class="card-img-top" alt=<% laptop_in_category.name%>>
         <%= image_tag laptop_in_category.image.variant(resize_to_limit: [285, 285]).processed %>
       </div>
@@ -28,6 +28,25 @@
         <%=laptop_in_category.operating_system%>
         <%=laptop_in_category.operating_system_version %>
       </p>
+      <% if laptop_in_category.discount_price.nil?%>
+        <p class="card-text">
+          <%=laptop_in_category.storage%>
+          $ <%=laptop_in_category.price %>
+        </p>
+      <%else%>
+       <p class="card-text">
+        <%=laptop_in_category.storage%>
+      </p>
+      <p class="card-text, text-muted"><s>
+        $<%=laptop_in_category.price %>
+        </s>
+      </p>
+      <p class="card-text, text-danger">
+      <strong>
+        Sale: $<%=laptop_in_category.discount_price%>
+        </strong>
+      </p>
+      <%end%>
        <%= link_to "See laptop details", laptop_in_category, class: "btn btn-primary"%>
     </div>
   </div>
