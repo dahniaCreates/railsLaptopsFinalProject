@@ -67,6 +67,7 @@ group :development do
   gem 'devise'
   gem 'image_processing'
   gem 'kaminari', '~> 1.2', '>= 1.2.2'
+  gem 'cssbundling-rails'
 end
 
 group :test do

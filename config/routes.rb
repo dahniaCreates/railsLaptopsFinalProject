@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
   resources :products, only: [:index, :show] do
     collection do
-      get "search"
+      get 'search'
+      get 'filter'
     end
   end
 end

@@ -21,4 +21,8 @@ class ProductsController < ApplicationController
 
     @category = Category.where(id: params[:category_id])
   end
+
+  def filter
+
+  end
 end
