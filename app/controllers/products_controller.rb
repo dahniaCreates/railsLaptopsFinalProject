@@ -23,6 +23,6 @@ class ProductsController < ApplicationController
   end
 
   def filter
-
+    @on_sales = Product.where.not(discount_price: nil)
   end
 end
