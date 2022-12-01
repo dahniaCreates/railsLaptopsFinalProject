@@ -39,7 +39,7 @@
         </strong>
       </p>
       <%end%>
-      <%= link_to "Buy now", @product, class: "btn btn-dark"%>
+      <%= link_to "Buy now", checkout_create_path(id: @product.id), remote: true, method: :post,class: "btn btn-dark"%>
     </div>
   </div>
   </div>

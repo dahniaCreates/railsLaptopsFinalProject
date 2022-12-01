@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/aboutus' => 'about_pages#show', as: '/aboutus'
   get 'categories/index'
   get 'categories/show'
+  get "checkout/create", to: "checkout#create"
   root to: 'home#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
