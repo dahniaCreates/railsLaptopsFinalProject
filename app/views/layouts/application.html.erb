@@ -60,6 +60,13 @@
         <%end%>
 </div>
 </nav>
+  <hr>
+  <h1>Shopping Cart</h1>
+  <% @cart.each do |product|%>
+    <%=product.category.name%> - <%=product.name%>
+    <br>
+  <%end%>
+  <hr>
     <%= yield %>
   </div>
   </body>
