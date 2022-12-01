@@ -25,4 +25,8 @@ class ProductsController < ApplicationController
   def filter
     @on_sales = Product.where.not(discount_price: nil)
   end
+
+  def update
+    @updates = Product.where(updated_at: 3.days.ago..)
+  end
 end

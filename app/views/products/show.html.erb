@@ -20,22 +20,22 @@
         <%=@product.operating_system%>
         <%=@product.operating_system_version %>
       </p>
-      <% if product.discount_price.nil?%>
+      <% if @product.discount_price.nil?%>
         <p class="card-text">
-          <%=product.storage%>
-          $ <%=product.price %>
+          <%=@product.storage%>
+          $ <%=@product.price %>
         </p>
       <%else%>
        <p class="card-text">
-        <%=product.storage%>
+        <%=@product.storage%>
       </p>
       <p class="card-text, text-muted"><s>
-        $<%=product.price %>
+        $<%=@product.price %>
         </s>
       </p>
       <p class="card-text, text-danger">
       <strong>
-        Sale: $<%=product.discount_price%>
+        Sale: $<%=@product.discount_price%>
         </strong>
       </p>
       <%end%>
