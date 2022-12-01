@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'categories/index'
   get 'categories/show'
   get "checkout/create", to: "checkout#create"
+  get "products/add_to_cart/:id", to: "products#add_to_cart", as: "add_to_cart"
+  delete "products/remove_from_cart/:id", to: "products#remove_from_cart", as: "remove_from_cart"
   root to: 'home#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -14,11 +16,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :categories, only: [:index, :show]
-  resources :products, only: [:index, :show] do
+  resources :products do
     collection do
       get 'search'
       get 'filter'
-      get 'update'
+      get 'recently_updated', to: "products#update"
     end
   end
 end

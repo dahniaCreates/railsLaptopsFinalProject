@@ -29,4 +29,16 @@ class ProductsController < ApplicationController
   def update
     @updates = Product.where(updated_at: 3.days.ago..)
   end
+
+  def add_to_cart
+    id = params[:id].to_i
+    session[:cart] << id unless session[:cart].include?(id)
+    redirect_to product_path
+  end
+
+  def remove_from_cart
+    id = params[:id].to_i
+    session[:cart].delete(id)
+    redirect_to product_path
+  end
 end

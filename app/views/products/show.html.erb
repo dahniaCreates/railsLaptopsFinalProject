@@ -39,6 +39,11 @@
         </strong>
       </p>
       <%end%>
+       <% if @cart.include?(@product) %>
+        <%= link_to "Remove from cart", remove_from_cart_path(id: @product.id), method: :delete, class: "btn btn-dark" %>
+        <% else %>
+            <%= link_to "Add to cart", add_to_cart_path(id: @product.id), class: "btn btn-dark" %>
+        <% end %>
       <%= link_to "Buy now", checkout_create_path(id: @product.id), remote: true, method: :post,class: "btn btn-dark"%>
     </div>
   </div>

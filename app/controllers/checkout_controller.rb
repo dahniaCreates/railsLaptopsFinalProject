@@ -12,7 +12,7 @@ class CheckoutController < ApplicationController
         # payment methods are used in the Checkout Session.
           currency: 'cad',
             product_data: {
-              name: product.name,
+              name: product.category.name + " " + product.name,
             },
             unit_amount: (product.price * 100).round()
           },
