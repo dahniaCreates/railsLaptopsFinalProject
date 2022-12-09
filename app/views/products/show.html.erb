@@ -44,7 +44,6 @@
         <% else %>
             <%= link_to "Add to cart", add_to_cart_path(id: @product.id), class: "btn btn-dark" %>
         <% end %>
-      <%= link_to "Buy now", checkout_create_path(id: @product.id), remote: true, method: :post,class: "btn btn-dark"%>
     </div>
   </div>
   </div>
