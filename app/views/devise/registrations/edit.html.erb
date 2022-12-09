@@ -4,13 +4,33 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :username %>
+    <%= f.label :username %><br />
     <%= f.text_field :username, autofocus: true%>
   </div>
 
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :street%> <br />
+    <%= f.text_field :street%>
+  </div>
+
+  <div class="field">
+    <%= f.label :city %> <br />
+    <%= f.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= f.label :province%> <br />
+    <%= f.text_field :province%>
+  </div>
+
+  <div class="field">
+    <%= f.label :zipcode%> <br />
+    <%= f.text_field :zipcode%>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -36,7 +56,7 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
-  <div class="actions">
+  <div class="actions"><br />
     <%= f.submit "Update" %>
   </div>
 <% end %>
