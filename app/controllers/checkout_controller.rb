@@ -5,7 +5,7 @@ class CheckoutController < ApplicationController
       # Remove the payment_method_types parameter
       # to manage payment methods in the Dashboard
       payment_method_types: ['card'],
-      @cart_items = session[:cart]
+      @cart = session[:cart]
       @line_items_dictionary = []
       session[:cart].each do |item|
         @product = Product.find(item["id"])

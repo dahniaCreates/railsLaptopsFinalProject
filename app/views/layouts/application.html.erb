@@ -12,9 +12,9 @@
   </head>
 
   <body>
+  <div class="container">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-  <div class="container">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
   <div class="container-fluid">
   <%= link_to "Home", root_path, class: "navbar-brand"%>
@@ -62,7 +62,7 @@
         <%end%>
 </div>
 </nav>
-  <hr>
+ <hr>
   <h1>Shopping Cart</h1>
   <% @cart.each do |product|%>
     <%=product.category.name%> - <%=product.name%>
@@ -72,6 +72,17 @@
     <%= link_to "Buy now", checkout_create_path, remote: true, method: :post,class: "btn btn-dark"%>
   <%end%>
   <hr>
+<div>
+    <% if current_user %>
+        <h4>Welcome <%= current_user.username%></h4>
+      <%= link_to "Sign Out", destroy_user_session_path, method: :destroy%>
+    <%else%>
+      <p>You have successfully signed out. Please sign in to complete checkout.</p>
+      <% link_to "Sign Up", new_user_registration_path%>
+      <%= link_to "Sign In", new_user_session_path%>
+    <%end%>
+</div>
+
     <%= yield %>
   </div>
   </body>
