@@ -14,6 +14,16 @@
   </div>
 
   <div class="field">
+    <%= f.label :first_name%> <br />
+    <%= f.text_field :first_name%>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name%> <br />
+    <%= f.text_field :last_name%>
+  </div>
+
+  <div class="field">
     <%= f.label :street%> <br />
     <%= f.text_field :street%>
   </div>
@@ -24,8 +34,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :province%> <br />
-    <%= f.text_field :province%>
+    <%= f.label :tax_id, "Province" %> <br />
+    <%= f.collection_select :tax_id, Tax.order(:province), :id , :province,  {:prompt => 'Select a province...'}%>
   </div>
 
   <div class="field">

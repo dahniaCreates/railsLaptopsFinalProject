@@ -1,4 +1,4 @@
 class Order < ApplicationRecord
-  belongs_to :customer
+  belongs_to :user
   validates :order_date, :status,presence: true
 end

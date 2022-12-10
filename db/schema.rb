@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_10_174146) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_10_195538) do
   create_table "about_pages", force: :cascade do |t|
     t.string "header"
     t.text "content"
@@ -88,28 +88,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_10_174146) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "customers", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "building_apt_number"
-    t.string "street"
-    t.string "city"
-    t.string "province"
-    t.string "zip_code"
-    t.string "country"
-    t.string "email"
-    t.string "password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "orders", force: :cascade do |t|
     t.datetime "order_date"
     t.string "status"
-    t.integer "customer_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "product_orders", force: :cascade do |t|
@@ -156,22 +141,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_10_174146) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "username"
+    t.integer "tax_id", null: false
     t.string "street"
     t.string "city"
     t.string "province"
     t.string "zipcode"
+    t.string "username"
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["tax_id"], name: "index_users_on_tax_id"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "orders", "customers"
+  add_foreign_key "orders", "users"
   add_foreign_key "product_orders", "orders"
   add_foreign_key "product_orders", "products"
   add_foreign_key "products", "categories"
+  add_foreign_key "users", "taxes"
 end
