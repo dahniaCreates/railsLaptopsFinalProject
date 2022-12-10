@@ -7,11 +7,15 @@ class CheckoutController < ApplicationController
       @taxes = Tax.where(province: current_user.tax.province)
       @cart_items.each do |item|
         @product = Product.find(item)
-        @total_price +=  (@product.price * 100).round()
+        @checkout_price = @product.price
+        if @product.discount_price.present?
+          @checkout_price = @product.discount_price
+        end
+        @total_price +=  (@checkout_price * 100).round()
         @line_items_dictionary << {
           price_data: {
             currency: 'cad',
-            unit_amount: (@product.price * 100).round(),
+            unit_amount: (@checkout_price * 100).round(),
             product_data: {
               name: @product.category.name + " " + @product.name,
               description: @product.category.name + " " + @product.name,
