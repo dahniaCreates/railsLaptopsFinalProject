@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
+  get 'cart', to: 'cart#show'
   devise_for :users
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
  end
   get 'products/index'
-  get 'products/show'
+  get 'products/show' => 'products#show', as: 'product/show'
   get '/contactus' => 'contact_pages#show', as: '/contactus'
   get '/aboutus' => 'about_pages#show', as: '/aboutus'
   get 'categories/index'
   get 'categories/show'
   get "checkout/create", to: "checkout#create"
-  get "products/add_to_cart/:id", to: "products#add_to_cart", as: "add_to_cart"
-  get "products/remove_from_cart/:id", to: "products#remove_from_cart", as: "remove_from_cart"
+  post 'cart/add'
+  post 'cart/remove'
   root to: 'home#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

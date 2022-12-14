@@ -61,15 +61,7 @@
 </div>
 </nav>
  <hr>
-  <h1>Shopping Cart</h1>
-  <% @cart.each do |product|%>
-    <%=product.category.name%> - <%=product.name%>
-    <br>
-  <%end%>
-  <% if @cart.present?%>
-    <%= link_to "Buy now", checkout_create_path, remote: true, method: :post,class: "btn btn-dark"%>
-  <%end%>
-  <hr>
+ <%=render partial: "cart/cart" if @render_cart = true%>
 <div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>

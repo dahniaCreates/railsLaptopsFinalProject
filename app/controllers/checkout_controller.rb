@@ -1,12 +1,11 @@
 class CheckoutController < ApplicationController
   def create
-    @cart_items = session[:cart]
       @line_items_dictionary = []
       @taxes_dict = []
       @total_price = 0
       @taxes = Tax.where(province: current_user.tax.province)
-      @cart_items.each do |item|
-        @product = Product.find(item)
+      @cart.orderables.each do |orderable|
+        @product = orderable.product
         @checkout_price = @product.price
         if @product.discount_price.present?
           @checkout_price = @product.discount_price
@@ -21,7 +20,7 @@ class CheckoutController < ApplicationController
               description: @product.category.name + " " + @product.name,
             },
           },
-          quantity: 1,
+          quantity: orderable.quantity,
         }
       end
       @taxes.each do |tax|
