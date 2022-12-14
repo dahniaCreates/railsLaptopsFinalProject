@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validate :validate_username
   has_many :orders, dependent: :destroy
   belongs_to :tax
-  validates :first_name, :last_name, :email, :password, :username, :zipcode, presence: true
+  validates :first_name, :last_name, :email, :username, :zipcode, presence: true
 
   def login
     @login || self.username || self.email

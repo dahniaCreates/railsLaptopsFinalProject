@@ -3,9 +3,13 @@
   <% if @cart.orderables.count > 0%>
     <%= render "cart/orderables" %>
     <p>Total: <%= @cart.total %></p>
+    <% if current_user.present?%>
      <%= form_with(url: checkout_create_path, method: :get) do |f|%>
             <%= f.submit "Buy Now!"%>
       <%end%>
+    <%else%>
+      <p>Please <a href=<%=new_user_registration_path%>>sign up</a> or <a href=<%=user_session_path%>>log in</a> to continue checkout.</p>
+    <% end%>
   <%else%>
     <p>Your cart is empty.</p>
   <% end %>
