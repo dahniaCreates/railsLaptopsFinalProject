@@ -3,6 +3,10 @@ class Orderable < ApplicationRecord
   belongs_to :cart
 
   def total
-    product.price * quantity
+    if product.discount_price.present?
+      product.discount_price * quantity
+    else
+      product.price * quantity
+    end
   end
 end

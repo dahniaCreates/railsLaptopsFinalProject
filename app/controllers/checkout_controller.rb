@@ -68,11 +68,34 @@ class CheckoutController < ApplicationController
         payment_method_types: ['card'],
         line_items: [@line_items_dictionary + @taxes_dict],
         mode: 'payment',
-        success_url: root_url,
-        cancel_url: root_url,
+        success_url: checkout_success_url + "?session_id={CHECKOUT_SESSION_ID}",
+        cancel_url: checkout_cancel_url,
       })
       respond_to do |format|
         format.html
       end
+  end
+
+  def success
+    if params[:session_id].present?
+      @session = Stripe::Checkout::Session.retrieve(params[:session_id])
+        @order = Order.find_or_create_by(order_date: Time.now(), status: @session.payment_intent, user_id: current_user.id)
+        @cart.orderables.each do |orderable|
+          @product = orderable.product
+          @checkout_price = @product.price
+          if @product.discount_price.present?
+            @checkout_price = @product.discount_price
+          end
+          ProductOrder.find_or_create_by(price: @checkout_price , quantity: orderable.quantity, order_id: @order.id, product_id: @product.id)
+        end
+        @find_order = Order.where(user_id: current_user.id)
+        @find_products_ordered = ProductOrder.where(order_id: @find_order.ids)
+    else
+      redirect_to checkout_cancel_url, alert: "No information to display."
+    end
+  end
+
+  def cancel
+    session[:cart_id] = []
   end
 end

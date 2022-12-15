@@ -5,43 +5,57 @@
 
 <div class="row">
   <% @on_sales.each do |sale|%>
-    <% if sale.image.present? %>
-  <div class="col-sm-3">
-  <div class="card" style="width: 18rem;">
-      <h4 class="card-title"><%=sale.category.name%> - <%=sale.name%></h4>
-      <div class="card-img-top" alt=<% sale.name%>>
-        <%= image_tag sale.image.variant(resize_to_limit: [285, 285]).processed %>
-      </div>
-    <%end%>
-    <div class="card-body">
-      <p class="card-text">
-        <%=sale.screen%> Screen,
-        <%=sale.screen_size%> Screen Size,
-        <%=sale.cpu%> CPU,
-      </p>
-      <p class="card-text">
-        <%=sale.gpu%> GPU,
-        <%=sale.ram%> RAM,
-      </p>
-      <p class="card-text">
-        <%=sale.operating_system%>
-        <%=sale.operating_system_version %>
-      </p>
-      <p class="card-text">
-        <%=sale.storage%>
-      </p>
-      <p class="card-text, text-muted"><s>
-        $<%=sale.price %>
-        </s>
-      </p>
-      <p class="card-text, text-danger">
-      <strong>
-        Sale: $<%=sale.discount_price%>
-        </strong>
-      </p>
-      <%= link_to "See laptop details", sale, class: "btn btn-dark"%>
+   <% if sale.image.present? %>
+  <div class="card mb-3" style="max-width: 1000px;">
+    <div class="row no-gutters">
+        <div class="col-md-4 d-flex justify-content-between" alt=<% sale.name%>>
+          <%= image_tag sale.image.variant(resize_to_limit: [285, 285]).processed %>
+        </div>
+      <%end%>
+        <div class="col-md-8">
+          <div class="card-body">
+              <h4 class="card-title"><%=sale.category.name%> - <%=sale.name%></h4>
+              <p class="card-text">
+                <%=sale.screen%> Screen,
+                <%=sale.screen_size%> Screen Size,
+                <%=sale.cpu%> CPU,
+              </p>
+              <p class="card-text">
+                <%=sale.gpu%> GPU,
+                <%=sale.ram%> RAM,
+              </p>
+              <p class="card-text">
+                <%=sale.operating_system%>
+                <%=sale.operating_system_version %>
+              </p>
+              <% if sale.discount_price.nil?%>
+                <p class="card-text">
+                  <%=sale.storage%>
+                  $ <%=sale.price %>
+                </p>
+              <%else%>
+              <p class="card-text">
+                <%=sale.storage%>
+              </p>
+              <p class="card-text, text-muted"><s>
+                $<%=sale.price %>
+                </s>
+              </p>
+              <p class="card-text, text-danger">
+              <strong>
+                Sale: $<%=sale.discount_price%>
+                </strong>
+              </p>
+              <%end%>
+              <%= form_with(url: cart_add_path) do |f|%>
+                <%= f.hidden_field :id, value: sale.id %>
+                <%= f.number_field :quantity, value: 0, min: 1 ,  class:"w-25 p-1 mb-3"%>
+                <%= f.submit "Add to Cart", class: "btn btn-outline-dark"%>
+              <%end%>
+                <%= link_to "See laptop details", sale, class: "btn btn-dark"%>
+          </div>
+        </div>
     </div>
   </div>
-  </div>
   <%end%>
-  </div>
+</div>

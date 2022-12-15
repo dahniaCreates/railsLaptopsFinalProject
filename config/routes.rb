@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'categories/index'
   get 'categories/show'
   get "checkout/create", to: "checkout#create"
+  get "checkout/success", to: "checkout#success"
+  get "checkout/cancel", to: "checkout#cancel"
   post 'cart/add'
   post 'cart/remove'
   root to: 'home#index'

@@ -1,56 +1,62 @@
-<aside>
   <h1><%=@category_name.name%> Laptops</h1>
 
   <div class="d-flex flex-row-reverse">
     <%= paginate @laptops_in_category%>
   </div>
-  <div class="row">
+
+<div class="row">
   <% @laptops_in_category.each do |laptop_in_category|%>
-    <% if laptop_in_category.image.present? %>
-  <div class="col-sm-3">
-  <div class="card" style="width: 18rem;">
-      <h4 class="card-title"><%=laptop_in_category.category.name%> - <%=laptop_in_category.name%></h4>
-      <div class="card-img-top" alt=<% laptop_in_category.name%>>
-        <%= image_tag laptop_in_category.image.variant(resize_to_limit: [285, 285]).processed %>
-      </div>
-    <%end%>
-    <div class="card-body">
-      <p class="card-text">
-        <%=laptop_in_category.screen%> Screen,
-        <%=laptop_in_category.screen_size%> Screen Size,
-        <%=laptop_in_category.cpu%> CPU,
-      </p>
-      <p class="card-text">
-        <%=laptop_in_category.gpu%> GPU,
-        <%=laptop_in_category.ram%> RAM,
-      </p>
-      <p class="card-text">
-        <%=laptop_in_category.operating_system%>
-        <%=laptop_in_category.operating_system_version %>
-      </p>
-      <% if laptop_in_category.discount_price.nil?%>
-        <p class="card-text">
-          <%=laptop_in_category.storage%>
-          $ <%=laptop_in_category.price %>
-        </p>
-      <%else%>
-       <p class="card-text">
-        <%=laptop_in_category.storage%>
-      </p>
-      <p class="card-text, text-muted"><s>
-        $<%=laptop_in_category.price %>
-        </s>
-      </p>
-      <p class="card-text, text-danger">
-      <strong>
-        Sale: $<%=laptop_in_category.discount_price%>
-        </strong>
-      </p>
+   <% if laptop_in_category.image.present? %>
+  <div class="card mb-3" style="max-width: 1000px;">
+    <div class="row no-gutters">
+        <div class="col-md-4 d-flex justify-content-between" alt=<% laptop_in_category.name%>>
+          <%= image_tag laptop_in_category.image.variant(resize_to_limit: [285, 285]).processed %>
+        </div>
       <%end%>
-       <%= link_to "See laptop details", laptop_in_category, class: "btn btn-primary"%>
+        <div class="col-md-8">
+          <div class="card-body">
+              <h4 class="card-title"><%=laptop_in_category.category.name%> - <%=laptop_in_category.name%></h4>
+              <p class="card-text">
+                <%=laptop_in_category.screen%> Screen,
+                <%=laptop_in_category.screen_size%> Screen Size,
+                <%=laptop_in_category.cpu%> CPU,
+              </p>
+              <p class="card-text">
+                <%=laptop_in_category.gpu%> GPU,
+                <%=laptop_in_category.ram%> RAM,
+              </p>
+              <p class="card-text">
+                <%=laptop_in_category.operating_system%>
+                <%=laptop_in_category.operating_system_version %>
+              </p>
+              <% if laptop_in_category.discount_price.nil?%>
+                <p class="card-text">
+                  <%=laptop_in_category.storage%>
+                  $ <%=laptop_in_category.price %>
+                </p>
+              <%else%>
+              <p class="card-text">
+                <%=laptop_in_category.storage%>
+              </p>
+              <p class="card-text, text-muted"><s>
+                $<%=laptop_in_category.price %>
+                </s>
+              </p>
+              <p class="card-text, text-danger">
+              <strong>
+                Sale: $<%=laptop_in_category.discount_price%>
+                </strong>
+              </p>
+              <%end%>
+              <%= form_with(url: cart_add_path) do |f|%>
+                <%= f.hidden_field :id, value: laptop_in_category.id %>
+                <%= f.number_field :quantity, value: 0, min: 1 ,  class:"w-25 p-1 mb-3"%>
+                <%= f.submit "Add to Cart", class: "btn btn-outline-dark"%>
+              <%end%>
+                <%= link_to "See laptop details", laptop_in_category, class: "btn btn-dark"%>
+          </div>
+        </div>
     </div>
   </div>
-  </div>
   <%end%>
-  </div>
-</aside>
+</div>
