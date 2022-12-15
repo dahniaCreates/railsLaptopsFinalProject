@@ -79,7 +79,7 @@ class CheckoutController < ApplicationController
   def success
     if params[:session_id].present?
       @session = Stripe::Checkout::Session.retrieve(params[:session_id])
-        @order = Order.find_or_create_by(order_date: Time.now(), status: @session.payment_intent, user_id: current_user.id)
+        @order = Order.find_or_create_by(order_date: Time.now(), status: @session.payment_status, user_id: current_user.id)
         @cart.orderables.each do |orderable|
           @product = orderable.product
           @checkout_price = @product.price
@@ -90,6 +90,7 @@ class CheckoutController < ApplicationController
         end
         @find_order = Order.where(user_id: current_user.id)
         @find_products_ordered = ProductOrder.where(order_id: @find_order.ids)
+        @taxes = Tax.where(province: current_user.tax.province)
     else
       redirect_to checkout_cancel_url, alert: "No information to display."
     end
