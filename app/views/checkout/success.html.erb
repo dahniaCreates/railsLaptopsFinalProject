@@ -31,7 +31,7 @@
             </p>
           </div>
           <hr>
-          <% @total_tax = (@cart.total * tax.GST).to_i%>
+          <% @total_tax = (@cart.total * tax.GST).truncate(2) %>
           <%end%>
           <% if tax.PST.present?%>
           <div class="col-xl-12">
@@ -39,7 +39,11 @@
             </p>
           </div>
           <hr>
-          <% @total_tax = (@cart.total * tax.GST).truncate(2) + (@cart.total * tax.PST).truncate(2)%>
+          <% if tax.GST.present? && tax.PST.present?%>
+            <% @total_tax = (@cart.total * tax.GST).truncate(2) + (@cart.total * tax.PST).truncate(2)%>
+          <%elsif tax.PST.present?%>
+           <% @total_tax = (@cart.total * tax.PST).truncate(2)%>
+          <%end%>
           <%end%>
           <% if tax.HST.present?%>
             <div class="col-xl-12">
@@ -47,7 +51,7 @@
               </p>
             </div>
             <hr>
-          <% @total_tax = (@cart.total * tax.GST).truncate(2) + (@cart.total * tax.PST).truncate(2) + (@cart.total * tax.HST).truncate(2)%>
+          <% @total_tax = (@cart.total * tax.HST).truncate(2)%>
           <%end%>
         <%end%>
         </div>
